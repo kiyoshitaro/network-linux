@@ -1,0 +1,45 @@
+chmod 777 /home/baitaplinux/log.txt
+
+
+#!/bin/bash
+
+#ls -la | grep $USER | cut ""
+c=3
+while [ c != "0" ]
+do
+echo "Moi ban chon chuc nang"
+echo "1: Nop bai"
+echo "2: Xem file log"
+echo "4: Xem danh sach nop bai"
+echo "5: Exit"
+read c
+case $c in
+"1")
+echo "Nhap ten 2 file: "
+read file1
+read file2
+if test -d /home/baitaplinux/$USER
+then
+rm -r /home/baitaplinux/$USER
+fi
+#sudo mkdir /home/baitaplinux && sudo chmod 777 /home/baitaplinux
+mkdir /home/baitaplinux/$USER
+chmod 700 /home/baitaplinux/$USER
+cp $file1 /home/baitaplinux/$USER
+cp $file2 /home/baitaplinux/$USER
+echo $USER $0 $1 $2 `date` >> /home/baitaplinux/log.txt
+chmod 777 /home/baitaplinux/log.txt
+echo "Nop bai thanh cong"
+;;
+"2")
+cp -r /home/baitaplinux/$USER ~/baitap
+echo "Lay bai thanh cong";;
+"3")
+cat /home/baitaplinux/log.txt;;
+"4")
+cd /home/baitaplinux/$USER && echo `ls`;;
+"5")
+        exit 0 ;;
+esac
+done
+
